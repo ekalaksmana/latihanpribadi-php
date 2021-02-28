@@ -1,12 +1,10 @@
 <?php
-//* Menghubungkan File functions di page ini
-require "functions.php";
 
-$mahasiswa = query("SELECT * FROM mahasiswa");
+// *Koneksi ke Database
+$connection = mysqli_connect("localhost", "root", "root", "phpdasar");
 
-
-// // *Query/ambil datanya dari database
-// $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
+// *Query/ambil datanya dari database
+$result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
 //! Cara check database error atau tidak
 // if (!$result) {
@@ -58,7 +56,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
         <?php
         $nomer = 1;
-        foreach ($mahasiswa as $row) : ?>
+        while ($row = mysqli_fetch_assoc($result)) : ?>
             <tr>
                 <td><?= $nomer; ?></td>
                 <td>
@@ -73,7 +71,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                 <td><?= $row["jurusan"]; ?></td>
             </tr>
         <?php $nomer++;
-        endforeach; ?>
+        endwhile; ?>
     </table>
 </body>
 
