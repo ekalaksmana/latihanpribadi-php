@@ -44,6 +44,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 <body>
     <h1>Daftar Mahasiswa</h1>
 
+    <a href="tambah.php">Tambah data</a>
+    <br><br>
+
     <table border="1" cellpadding="10" cellspacing="0">
 
         <tr>
@@ -62,7 +65,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             <tr>
                 <td><?= $nomer; ?></td>
                 <td>
-                    <a href="#">Edit</a> | <a href="#">Delete</a>
+                    <a href="edit.php?id=<?= $row['id']; ?>">Edit</a> | <a href="hapus.php?id=<?= $row['id']; ?>">Delete</a>
                 </td>
                 <td>
                     <div class="box"></div>
