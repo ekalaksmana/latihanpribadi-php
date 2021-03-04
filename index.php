@@ -2,7 +2,12 @@
 //* Menghubungkan File functions di page ini
 require "functions.php";
 
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY ID DESC");
+
+if (isset($_POST['cari'])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
 
 
 // // *Query/ambil datanya dari database
@@ -46,6 +51,13 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
     <a href="tambah.php">Tambah data</a>
     <br><br>
+
+    <!-- Fitur Pencarian -->
+    <form action="" method="post">
+        <input type="text" name="keyword" id="cari" size="40" autofocus placeholder="Cari data mahasiswa" autocomplete="off">
+        <button type="submit" name="cari">Cari</button>
+    </form>
+    <br>
 
     <table border="1" cellpadding="10" cellspacing="0">
 
