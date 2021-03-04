@@ -80,7 +80,7 @@ if (isset($_POST['cari'])) {
                     <a href="edit.php?id=<?= $row['id']; ?>">Edit</a> | <a href="hapus.php?id=<?= $row['id']; ?>">Delete</a>
                 </td>
                 <td>
-                    <div class="box"></div>
+                    <img src="img/<?= $row['gambar']; ?>" width="50px">
                 </td>
                 <td><?= $row["nrp"]; ?></td>
                 <td><?= $row["nama"]; ?></td>

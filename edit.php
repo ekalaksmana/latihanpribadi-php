@@ -43,12 +43,13 @@ if (isset($_POST["submit"])) {
     <a href="index.php">kembali</a>
     <br><br>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <ul>
             <li>
                 <label for="nrp">NRP :</label>
                 <!-- data tidak terlihat -->
                 <input type="hidden" name="id" value="<?= $siswa['id']; ?>">
+                <input type="hidden" name="gambarLama" value="<?= $siswa['gambar']; ?>">
                 <input type="text" name="nrp" id="nrp" required value="<?= $siswa['nrp']; ?>">
             </li>
 
@@ -68,8 +69,11 @@ if (isset($_POST["submit"])) {
             </li>
 
             <li>
+                <br>
                 <label for="gambar">gambar :</label>
-                <input type="text" name="gambar" id="gambar" value="<?= $siswa['gambar']; ?>">
+                <img src="img/<?= $siswa['gambar']; ?>" width="50px" alt="">
+                <br><br>
+                <input type="file" name="gambar" id="gambar">
             </li>
 
             <li>

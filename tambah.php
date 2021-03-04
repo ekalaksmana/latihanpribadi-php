@@ -36,7 +36,7 @@ if (isset($_POST["submit"])) {
     <a href="index.php">kembali</a>
     <br><br>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <ul>
             <li>
                 <label for="nrp">NRP :</label>
@@ -60,7 +60,7 @@ if (isset($_POST["submit"])) {
 
             <li>
                 <label for="gambar">gambar :</label>
-                <input type="text" name="gambar" id="gambar">
+                <input type="file" name="gambar" id="gambar">
             </li>
 
             <li>
