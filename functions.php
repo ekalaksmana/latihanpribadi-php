@@ -155,3 +155,45 @@ function cari($keyword)
 
     return query($query);
 }
+
+//todo FUNGSI LOGIN!!!
+
+function register($data)
+{
+    global $connection;
+
+    //* kita paksa field username untuk membuat tulisan jadikecil dan tidak mendeteksi sebuah backslash dengan stripslashes!
+    $username = strtolower(stripslashes($data['username']));
+    //* kita buat field password agar si users bisa memasukan tanda kutip,koma untuk di dalam database. agar tersimpan dengan aman!
+    $password = mysqli_real_escape_string($connection, $data["password"]);
+    $password2 = mysqli_real_escape_string($connection, $data["password2"]);
+
+    //? Check apakah users yang dimasukan sudah ada atau belum?
+    $result = mysqli_query($connection, "SELECT username FROM users WHERE username = '$username'");
+
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+            alert('username sudah terdaftar!');
+        </script>";
+        return false;
+    }
+
+    //? Check apakah password sudah konfirmasi sama atau belum?
+    if ($password !== $password2) {
+        echo "<script>
+            alert('Konfirmasi password tidak sesuai!!!');
+        </script>";
+        return false;
+    }
+
+    //* Enkripsi password terlebih dahulu
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    // var_dump($password);
+    // die(); 
+
+    //* Tambah atau masukan data users ke database
+    mysqli_query($connection, "INSERT INTO users VALUES(NULL, '$username','$password')");
+
+    //* Kembalikan data yg bernilai satu ketika berhasil untuk notifikasi alert!
+    return mysqli_affected_rows($connection);
+}
