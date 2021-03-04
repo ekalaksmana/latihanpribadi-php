@@ -70,3 +70,18 @@ function ubah($data)
     //* Setelah berhasil kita akan mengembalikan sebuah angka kedalam. alias kita memberikan info apakah berhasil atau tidak!!
     return mysqli_affected_rows($connection);
 }
+
+
+//* Fungsi Cari data mahasiswa
+function cari($keyword)
+{
+    $query = "SELECT * FROM mahasiswa
+            WHERE
+            nama LIKE '%$keyword%' OR 
+            nrp LIKE '%$keyword%' OR
+            email LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}

@@ -5,6 +5,8 @@ require 'functions.php';
 //* ambil data dari link
 $idmhs = $_GET['id'];
 
+//? kenapa isi [0] di akhir query?
+//* karena saat menampilkan data, masih memberikan kotak. maka dari itu harus dikeluarkan dulu.
 $siswa = query("SELECT * FROM mahasiswa WHERE id = $idmhs")[0];
 
 
