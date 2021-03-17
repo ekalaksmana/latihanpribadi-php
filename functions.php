@@ -197,3 +197,30 @@ function register($data)
     //* Kembalikan data yg bernilai satu ketika berhasil untuk notifikasi alert!
     return mysqli_affected_rows($connection);
 }
+
+function login($data)
+{
+    global $connection;
+    $username = $data['username'];
+    $password = $data['password'];
+    $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username'");
+
+    //? CHECK username ada atau tidak?
+    if (mysqli_num_rows($result) === 1) {
+
+        //? Check apakah password sudah sesuai?
+        //* ambil data dari database dulu
+        $row = mysqli_fetch_assoc($result);
+
+        //* Check sudah sesuai atau tidak
+        if (password_verify($password, $row["password"])) {
+
+            //* Langsung arahkan user ke halaman Index.php
+            echo "<script>
+                alert('LOGIN BERHASIL!');
+            </script>";
+            header("Location:index.php");
+            exit;
+        }
+    }
+}

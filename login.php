@@ -3,24 +3,7 @@
 require "functions.php";
 
 if (isset($_POST['login'])) {
-
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username'");
-
-    //? CHECK username ada atau tidak?
-    if (mysqli_num_rows($result) === 1) {
-
-        //? Check apakah password sudah sesuai?
-        //* ambil data dari database dulu
-        $row = mysqli_fetch_assoc($result);
-        //* Check sudah sesuai atau tidak
-        if (password_verify($password, $row["password"])) {
-            //* Langsung arahkan user ke halaman Index.php
-            header("Location:index.php");
-            exit;
-        }
-    }
+    login($_POST);
 }
 
 ?>

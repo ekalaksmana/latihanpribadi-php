@@ -16,7 +16,6 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 //*     var_dump($mhs);
 //* }
 
-
 ?>
 
 
